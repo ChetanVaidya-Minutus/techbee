@@ -38,7 +38,12 @@ check_password_strength() {
 set_security_question() {
     echo -e "${GREEN}Set your security question:"
     read -p "Security Question: " question
+
+    # Change the color of the answer input to white
+    echo -e -n "${WHITE}"
     read -p "Answer: " answer
+    echo -e -n "${NC}"
+
     security_question_set=true
     security_question="$question"
     security_question_answer="$answer"
@@ -48,12 +53,15 @@ set_security_question() {
 # Function to prompt and verify security question
 verify_security_question() {
     echo -e "${YELLOW}Please answer the security question to verify your identity:"
-    read -p "Question: $security_question " user_answer
-    if [[ "$user_answer" == "$security_question_answer" ]]; then
+    echo -e "Question: ${security_question} ${WHITE}(Enter your answer below)"
+    read -s -p "Answer: " entered_answer
+    echo -e -n "${NC}"
+
+    if [[ "$entered_answer" == "$security_question_answer" ]]; then
         echo -e "${GREEN}Identity verified."
     else
         echo -e "${RED}Incorrect answer. Identity verification failed."
-        exit 1
+        verify_security_question  # Prompt again for entering the answer
     fi
 }
 
