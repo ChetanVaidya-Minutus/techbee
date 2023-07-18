@@ -64,7 +64,7 @@ while true; do
     echo -e "${NC}-----------------------------------------------"
     echo
     echo -e "${YELLOW}1) Set security question${NC}"
-    echo -e "${YELLOW}2) Enter your new password${NC}"
+    echo -e "${YELLOW}2) Generate your new password${NC}"
     echo -e "${YELLOW}3) Check your current password${NC}"
     echo -e "${YELLOW}4) Quit${NC}"
     echo
