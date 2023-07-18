@@ -28,7 +28,9 @@ check_password_strength() {
 
     if [ "$is_new_password" == "true" ]; then
         # Password meets all requirements
-        echo -e "${GREEN}Password is strong."
+        echo
+        echo -e "${GREEN}Congrats....your password is strong."
+		echo
     fi
 
     return 0
@@ -36,6 +38,11 @@ check_password_strength() {
 
 # Function to set security question
 set_security_question() {
+    if $security_question_set; then
+        echo -e "${RED}Security question has already been set. You cannot set it again.${NC}"
+        return
+    fi
+
     echo -e "${GREEN}Set your security question:"
     read -p "Security Question: " question
 
