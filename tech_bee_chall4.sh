@@ -71,11 +71,14 @@ while true; do
     read -p "Enter your choice: " choice
     echo
 
+    # Remove leading zeros using sed
+    choice=$(echo "$choice" | sed 's/^0*//')
+
     case "$choice" in
-        *1)
+        1)
             set_security_question
             ;;
-        *2)
+        2)
             if ! $security_question_set; then
                 echo -e "${RED}Security question has not been set. Please set the security question first.${NC}"
                 continue
@@ -98,7 +101,7 @@ while true; do
                 password_set=true
             fi
             ;;
-        *3)
+        3)
             if ! $security_question_set; then
                 echo -e "${RED}Security question has not been set. Please set the security question first.${NC}"
                 continue
@@ -128,7 +131,7 @@ while true; do
                 check_password_strength "$current_password" "false"
             fi
             ;;
-        *4)
+        4)
             echo -e "${NC}Quitting..."
             break
             ;;
